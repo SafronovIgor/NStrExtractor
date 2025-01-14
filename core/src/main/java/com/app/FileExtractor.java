@@ -3,6 +3,7 @@ package com.app;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FileExtractor {
     private final Map<String, BslFileHandler> fileHandlers;
@@ -12,6 +13,8 @@ public class FileExtractor {
     }
 
     public void extractNStrToFile(Path pathToFile) {
+        Objects.requireNonNull(pathToFile, "Path to file cannot be null.");
+
         String fileExtension = getFileExtension(pathToFile);
         FileHandler handler = fileHandlers.get(fileExtension);
 
