@@ -10,7 +10,7 @@ public class BslFileHandler implements FileHandler {
 
     @Override
     public void handle(Path pathToFile) {
-        Path outputFile = Path.of(pathToFile.getParent().toString(), "V1_Extracted_Output.txt");
+        Path outputFile = Path.of("", "V1_Extracted_Output.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(pathToFile.toFile()));
              BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile.toFile()))) {
