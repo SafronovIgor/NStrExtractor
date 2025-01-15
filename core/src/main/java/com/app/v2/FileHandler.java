@@ -1,4 +1,4 @@
-package com.app;
+package com.app.v2;
 
 import java.nio.file.Path;
 
