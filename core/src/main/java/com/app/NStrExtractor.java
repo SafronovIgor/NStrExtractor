@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class NStrExtractor {
     public static void main(String[] args) {
-        String s = "/Users/igorsafronov/IdeaProjects/NStrExtractor/core/src/main/resources/ObjectModule.bsl"; // absolute path to file
+        String s = ""; // absolute path to file
 
         // version 1
         FileExtractor fileExtractor = new FileExtractor();
