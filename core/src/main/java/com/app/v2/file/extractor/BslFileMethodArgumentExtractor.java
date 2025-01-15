@@ -1,4 +1,4 @@
-package com.app.v1.file.extractor;
+package com.app.v2.file.extractor;
 
 import java.io.File;
 
