@@ -1,4 +1,4 @@
-package com.app.v1.file.extractor;
+package com.app.v2.file.extractor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public abstract class AbstractFileMethodArgumentExtractor {
     private final File sourceFile;
@@ -50,19 +49,22 @@ public abstract class AbstractFileMethodArgumentExtractor {
         }
 
         for (MethodName method : methods) {
-            Pattern pattern = method.getPattern();
-            List<String> extractedArguments = getExtractedArguments()
-                    .computeIfAbsent(method, k -> new ArrayList<>());
+            List<String> extractedArguments = getExtractedArguments().computeIfAbsent(method, k -> new ArrayList<>());
+            MatchExtractionParams matchParams = MatchExtractionParams.builder()
+                    .line(line)
+                    .pattern(method.getPattern())
+                    .methodName(method)
+                    .build();
 
-            extractMatches(line, pattern, extractedArguments, method, lineNumber);
+            extractMatches(matchParams, extractedArguments, lineNumber);
         }
     }
 
-    private void extractMatches(String line, Pattern pattern, List<String> extractedArguments, MethodName method, int lineNumber) {
-        Matcher matcher = pattern.matcher(line);
+    private void extractMatches(MatchExtractionParams params, List<String> extractedArguments, int lineNumber) {
+        Matcher matcher = params.getPattern().matcher(params.getLine());
 
         while (matcher.find()) {
-            if (method == MethodName.N_STR) {
+            if (params.getMethodName() == MethodName.N_STR) {
                 processNStrContent(matcher.group(1), lineNumber, extractedArguments);
             } else {
                 String result = matcher.group(1);
