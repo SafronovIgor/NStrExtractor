@@ -1,9 +1,9 @@
-package com.app.v2.file.extractor;
+package com.app.file.extractor;
 
 import java.util.regex.Pattern;
 
 public enum MethodName {
-    N_STR(Pattern.compile("NStr\\(\"(.*?)\"\\)"));
+    N_STR(Pattern.compile("NStr\\(\\s*\"([^\"]*)\""));
 
     private final Pattern pattern;
 

@@ -1,6 +1,6 @@
-package com.app.v2.file.writer;
+package com.app.file.writer;
 
-import com.app.v2.file.extractor.MethodName;
+import com.app.file.extractor.MethodName;
 
 import java.util.List;
 import java.util.Map;
